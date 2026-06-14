@@ -22,6 +22,6 @@ app.use("/api/chats", chatRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
-app.use(errorHandler );
+app.use(errorHandler);
 
 export default app;
