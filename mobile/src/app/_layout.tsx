@@ -3,6 +3,8 @@ import "../../global.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ClerkProvider } from "@clerk/expo";
 import { tokenCache } from "@clerk/expo/token-cache";
+import AuthSync from "@/components/AuthSync";
+import { StatusBar } from "expo-status-bar";
 
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
 
@@ -16,6 +18,8 @@ export default function RootLayout() {
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <QueryClientProvider client={queryClient}>
+        <StatusBar style="light" />
+        <AuthSync />
         <Stack
           screenOptions={{
             headerShown: false,
