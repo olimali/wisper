@@ -1,7 +1,6 @@
 import { useApi } from "@/lib/axios";
 import { User } from "@/types";
-import { useAuth } from "@clerk/expo";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
 export const useAuthCallback = () => {
     const api = useApi();

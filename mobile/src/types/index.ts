@@ -5,12 +5,7 @@ export interface User {
   avatar: string;
 }
 
-export interface MessageSender {
-  _id: string;
-  name: string;
-  email: string;
-  avatar: string;
-}
+export type MessageSender = User
 
 export interface Message {
   _id: string;
