@@ -1,6 +1,6 @@
 import { useAuth } from '@clerk/expo'
 import axios from 'axios'
-import { useEffect } from 'react'
+import { useCallback } from 'react'
 
 const API_URL = "https://wisper-vkzp.onrender.com/api"
 
@@ -9,21 +9,18 @@ const api = axios.create({
 })
 
 export const useApi = () => {
-    const { getToken } = useAuth()
+    const { getToken } = useAuth();
 
+    const apiWithAuth = useCallback(
+        async <T>(config: Parameters<typeof api.request>[0]) => {
+            const token = await getToken();
+            return api.request<T>({
+                ...config,
+                headers: { ...config.headers, ...(token && { Authorization: `Bearer ${token}` }) },
+            });
+        },
+        [getToken]
+    );
 
-    useEffect(() => {
-        const requestIntersepter = api.interceptors.request.use(async (config) => {
-            const token = await getToken()
-
-            if (token) {
-                config.headers.Authorization = `Bearer ${token}`
-            }
-            return config
-        })
-
-        return () => { api.interceptors.request.eject(requestIntersepter) };
-    }, [getToken])
-
-    return api
-}
+    return { api, apiWithAuth };
+};
