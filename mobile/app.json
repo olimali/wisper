@@ -7,10 +7,15 @@
     "icon": "./assets/images/logo.png",
     "scheme": "mobile",
     "userInterfaceStyle": "automatic",
+    "splash": {
+      "backgroundColor": "#1A1A1D"
+    },
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/images/logo.png",
+      "bundleIdentifier": "com.wisper.app"
     },
     "android": {
+      "package": "com.wisper.app",
       "adaptiveIcon": {
         "backgroundColor": "#1A1A1D",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -29,10 +34,8 @@
         "expo-splash-screen",
         {
           "backgroundColor": "#1A1A1D",
-          "android": {
-            "image": "./assets/images/logo.png",
-            "imageWidth": 76
-          }
+          "image": "./assets/images/logo.png",
+          "imageWidth": 76
         }
       ],
       "@clerk/expo",
